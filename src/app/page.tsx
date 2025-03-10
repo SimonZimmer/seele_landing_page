@@ -4,7 +4,160 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState, useEffect, useRef } from "react";
 import { SiIntel } from "react-icons/si";
-import { FaDownload, FaApple, FaCoffee, FaEnvelope, FaWindows } from "react-icons/fa";
+import { FaMusic, FaClock, FaVolumeUp, FaSlidersH, FaInstagram, FaSoundcloud, FaCheckCircle, FaPalette, FaDownload, FaApple, FaCoffee, FaEnvelope, FaWindows } from "react-icons/fa";
+
+
+export function FeaturesSection() {
+  const features = [
+    {
+      icon: <FaMusic />,
+      title: "High Quality pitch-shifting",
+      description: "FFT-based pitch-shifting with phase preservation",
+    },
+    {
+      icon: <FaClock />,
+      title: "Delay control",
+      description: "Delay each voice for diffusing the mixed signal in the time domain",
+    },
+    {
+      icon: <FaVolumeUp />,
+      title: "Level & mute control",
+      description: "Add and mix-in each pitch-shifted voice individually",
+    },
+    {
+      icon: <FaSlidersH />,
+      title: "Smoothed parameters",
+      description: "Ramped parameter processing to provide smooth transitions while automating",
+    },
+    {
+      icon: <FaCheckCircle />,
+      title: "Verified by pluginval",
+      description: "Plugin integrity verified by Traktion's pluginval tool with highest strictness-level",
+    },
+    {
+      icon: <FaPalette />,
+      title: 'SEELE approved UI-design',
+      description: 'Inspired by Hideaki Anno\'s animated series "Neon Genesis Evangelion"',
+    },
+  ];
+
+  return (
+    <section className="mt-12 space-y-16">
+      <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-purple-300 to-purple-100 text-transparent bg-clip-text">
+        Key Features
+      </h2>
+      
+      <div className="grid md:grid-cols-3 gap-8">
+        {features.map((feature, index) => (
+          <div 
+            key={index} 
+            className="space-y-4 p-6 border-2 border-red-600 rounded-lg hover:shadow-purple-900/20 hover:shadow-md transition-all duration-300"
+          >
+            <div className="flex items-center gap-3 text-red-400">
+              <span className="text-2xl">{feature.icon}</span>
+              <h3 className="text-xl font-semibold">{feature.title}</h3>
+            </div>
+            <p className="text-gray-400">{feature.description}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+export function Footer() {
+    return (
+  <footer className="mt-24 pt-8 border-t border-gray-800 text-center text-gray-400">
+    <p>© {new Date().getFullYear()} SEELE. All rights reserved.</p>
+    {/* Social Links */}
+    <div className="mt-4 flex justify-center gap-4">
+      <a
+        href="https://www.instagram.com/stories/hidonash/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-400 hover:text-red-500 transition-all duration-300"
+      >
+        <FaInstagram className="text-2xl" />
+      </a>
+      <a
+        href="https://soundcloud.com/hidonash"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-gray-400 hover:text-red-500 transition-all duration-300"
+      >
+        <FaSoundcloud className="text-2xl" />
+      </a>
+    </div>
+    <p className="mt-2"></p>
+  </footer>
+  );
+}
+
+export function TestimonialSection() {
+  return (
+    <section className="mt-24 space-y-8 text-center">
+      <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-300 to-purple-100 text-transparent bg-clip-text">
+        What Users Are Saying
+      </h2>
+      <div className="flex flex-col items-center">
+        <div className="w-24 h-24 relative rounded-full overflow-hidden border-4 border-red-600">
+          <Image 
+            src="/images/hidonash_testimonial.png" 
+            alt="User Testimonial" 
+            layout="fill" 
+            objectFit="cover" 
+          />
+        </div>
+        <p className="text-gray-300 mt-4 max-w-xl italic">
+          "SEELE is the perfect tool for processing vocals. It’s almost like I built it myself. Which is exactly what happened."
+        </p>
+        <p className="text-red-400 font-semibold mt-2">- Hidonash, Music Producer and Software Developer</p>
+      </div>
+    </section>
+  );
+}
+
+export function WavyDivider() {
+  return (
+    <section className="mt-12 space-y-16">
+    <svg
+      viewBox="0 0 1440 120"
+      xmlns="http://www.w3.org/2000/svg"
+      className="w-full"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="
+          M0,50
+          C120,90 240,30 360,70
+          C480,110 600,10 720,60
+          C840,110 960,40 1080,80
+          C1200,120 1320,20 1440,50
+        "
+        stroke="red"
+        strokeWidth="4"
+        fill="none"
+        strokeLinecap="round"
+      />
+      <path
+        d="
+          M0,50
+          C100,80 200,20 300,60
+          C400,100 500,10 600,50
+          C700,90 800,30 900,70
+          C1000,110 1100,20 1200,60
+          C1300,100 1400,40 1440,50
+        "
+        stroke="red"
+        strokeWidth="3"
+        fill="none"
+        opacity="1"
+      />
+    </svg>
+    </section>
+  );
+}
+
 
 export default function Home() {
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
@@ -43,12 +196,12 @@ export default function Home() {
                 SEELE
               </h1>
               <p className="pb-10 text-xl md:text-2xl text-red-400">
-                VST3 plugin for pitch-shifted voice mixing
+                VST3-plugin for pitch-shifted voice mixing
               </p>
             </div>
               <Link 
                 href="https://buymeacoffee.com/simonzimmermann" 
-                className="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-300 to-purple-100 hover:from-purple-100 hover:to-purple-300 text-black rounded-md transition-all duration-300"
+                className="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-8 py-3 bg-purple-300 hover:bg-purple-100 text-black rounded-md transition-all duration-300"
               >
               <FaCoffee className="text-lg" />
                 Support My Work
@@ -57,7 +210,7 @@ export default function Home() {
               <div className="relative w-full sm:w-1/2" ref={dropdownRef}>
                 <button
                   onClick={toggleDownloadOptions}
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-red-600 to-red-500 hover:from-red-500 hover:to-red-400 text-black rounded-md transition-all duration-300"
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r bg-red-600 hover:bg-red-400 text-black rounded-md transition-all duration-300"
                 >
                   <FaDownload className="text-lg" />
                   Download Now
@@ -127,52 +280,12 @@ export default function Home() {
               }
           </div>
         </div>
+        <WavyDivider />
 
-        {/* Wavy Line Section */}
-        <section className="mt-12 space-y-16">
-          <div className="w-full">
-            <svg
-              viewBox="0 0 1440 100"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="w-full"
-            >
-              <path
-                d="M0,75 
-                   C100,50 200,100 300,75 
-                   C400,30 500,120 600,75 
-                   C700,10 800,140 900,75 
-                   C1000,20 1100,130 1200,75 
-                   C1300,40 1400,110 1500,75 
-                   C1600,30 1700,120 1800,75 
-                   C1900,50 2000,100 2100,75 
-                   C2200,20 2300,130 2400,75"
-                stroke="red"
-                strokeWidth="4"
-                fill="transparent"
-                strokeLinecap="round"
-              />
-            </svg>
-          </div>
-        </section>
-        
-        {/* Features Section */}
-        <section className="mt-24 space-y-16">
-          <h2 className="text-3xl font-bold text-center bg-gradient-to-r from-purple-300 to-purple-100 text-transparent bg-clip-text">
-            Key Features
-          </h2>
-          
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div key={index} className="space-y-4 p-6 bg-gradient-to-b from-gray-900 to-gray-950 rounded-lg hover:shadow-purple-900/20 hover:shadow-md transition-all duration-300">
-                <div className="text-purple-400 text-xl">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-red-400">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <TestimonialSection />
 
+        <FeaturesSection />
+ 
         {/* Image */}
         <section className="mt-24 space-y-16">
           <div className="md:w-full ">
@@ -195,7 +308,7 @@ export default function Home() {
           </h2>
           
           <div className="grid md:grid-cols-2 gap-8">
-            <div className="p-6 bg-gradient-to-b from-gray-900 to-gray-950 rounded-lg">
+            <div className="p-6 border-2 border-red-600 rounded-lg">
               <h3 className="text-xl font-semibold text-red-400 mb-4">System Requirements</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>• 4GB RAM minimum </li>
@@ -203,7 +316,7 @@ export default function Home() {
               </ul>
             </div>
             
-            <div className="p-6 bg-gradient-to-b from-gray-900 to-gray-950 rounded-lg">
+            <div className="p-6 border-2 border-red-600 rounded-lg">
               <h3 className="text-xl font-semibold text-red-400 mb-4">Compatibility</h3>
               <ul className="space-y-2 text-gray-300">
                 <li>• Apple Silicon (M-Series), macOS >= 11 (Big Sur)</li>
@@ -214,9 +327,9 @@ export default function Home() {
             </div>
           </div>
         </section>
-        
+ 
         {/* Download Section */}
-        <section id="download" className="mt-24 p-8 bg-gradient-to-br from-gray-900 to-black rounded-xl">
+        <section id="download" className="mt-24 p-8 border-2 border-red-600 rounded-xl">
           <div className="max-w-3xl mx-auto text-center space-y-8">
             <h2 className="text-3xl font-bold bg-gradient-to-r from-red-500 to-red-300 text-transparent bg-clip-text">
               Questions or Ideas?
@@ -225,59 +338,18 @@ export default function Home() {
             <p className="text-gray-300">
               Get in touch if you have any bugs to report, or if you have any suggestions to improve SEELE
             </p>
-              <Link 
-                href="mailto:mail@simonzimmermann.de" 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                className="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r from-purple-300 to-purple-100 hover:from-purple-100 hover:to-purple-300 text-black rounded-md font-medium transition-all duration-300"
-              >
-                <FaEnvelope className="text-lg" />
-                  Get In Touch
-              </Link>
-
-          </div>          
+            <a 
+              href="mailto:mail@hidonash.com" 
+              className="w-full sm:w-1/2 inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r bg-purple-300 hover:bg-purple-100 text-black rounded-md font-medium transition-all duration-300"
+            >
+              <FaEnvelope className="text-lg" />
+              mail@simonzimmermann.de
+            </a>
+          </div>
         </section>
-        
-        {/* Footer */}
-        <footer className="mt-24 pt-8 border-t border-gray-800 text-center text-gray-400">
-          <p>© {new Date().getFullYear()} SEELE. All rights reserved.</p>
-          <p className="mt-2"></p>
-        </footer>
       </div>
+
+      <Footer />
     </main>
   );
 }
-
-// Features data
-const features = [
-  {
-    icon: '',
-    title: 'High Quality pitch-shifting',
-    description: 'FFT-based pitch-shifting with phase preservation'
-  },
-  {
-    icon: '',
-    title: 'Delay control',
-    description: 'Delay each voice for diffusing the mixed signal in the time domain'
-  },
-  {
-    icon: '',
-    title: 'Level & mute control',
-    description: 'Add and mix-in each pitch-shifted voice individually'
-  },
-  {
-    icon: '',
-    title: 'Smoothed parameters',
-    description: 'Ramped parameter processing to provide smooth transitions while automating'
-  },
-  {
-    icon: '',
-    title: 'Verfied by pluginval',
-    description: 'Plugin integrity verfied by Traktions pluginval tool with highest strictness-level'
-  },
-  {
-    icon: '',
-    title: 'SEELE approved UI-design',
-    description: 'inspired by Hideaki Anno\'s animated series "Neon Genesis Evangelion"',
-  },
-];
