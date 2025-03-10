@@ -7,15 +7,18 @@ import { useState, useEffect, useRef } from 'react';
 
 export function DownloadButton() {
   const [showDownloadOptions, setShowDownloadOptions] = useState(false);
-  const dropdownRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement | null>(null);
 
   const toggleDownloadOptions = () => {
     setShowDownloadOptions((prev) => !prev);
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setShowDownloadOptions(false);
       }
     }
