@@ -18,6 +18,14 @@ export const metadata: Metadata = {
   title: 'SEELE',
   description:
     'SEELE is a high-quality pitch-shifting plugin for music producers',
+  icons: {
+    icon: [
+      {
+          url: "/images/favicon.ico",
+          href: "/images/favicon.ico",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({
