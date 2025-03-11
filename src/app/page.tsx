@@ -8,6 +8,7 @@ import { WavyDivider } from '@/components/WavyDivider';
 import { Contact } from '@/components/Contact';
 import { TechnicalSpecs } from '@/components/TechnicalSpecs';
 import { DownloadButton } from '@/components/DownloadButton';
+import { Consent } from '@/components/Consent';
 
 export default function Home() {
   return (
@@ -68,6 +69,7 @@ export default function Home() {
       </div>
 
       <Footer />
+      <Consent />
 
     </main>
   );

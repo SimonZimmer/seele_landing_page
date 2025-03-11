@@ -37,7 +37,7 @@ export function DownloadButton() {
       <div className="relative w-full sm:w-1/2" ref={dropdownRef}>
         <button
           onClick={toggleDownloadOptions}
-          className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r bg-red-600 hover:bg-red-400 text-black rounded-md transition-all duration-300"
+          className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 bg-gradient-to-r bg-red-600 hover:bg-red-400 text-black rounded-md transition-all duration-300 cursor-pointer"
         >
           <FaDownload className="text-lg" />
           Download Now
