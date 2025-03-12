@@ -1,57 +1,47 @@
-'use client'
+'use client';
+
 import { useState, useEffect } from 'react';
 
 export function Consent() {
-  const [consentState, setConsentState] = useState<boolean | null>(null);
   const [shouldShow, setShouldShow] = useState<boolean | null>(null);
-  
+
   useEffect(() => {
     try {
-      const storedConsent = localStorage.getItem('cookieConsent');
-      
-      if (storedConsent === null) {
-        console.log('No previous consent found, showing banner');
-        setConsentState(null);
-        setShouldShow(true);
-      } else {
-        console.log('Previous consent found:', storedConsent);
-        setConsentState(storedConsent === 'true');
-        setShouldShow(false);
-      }
+      const storedConsent = localStorage.getItem('analytics-consent');
+      setShouldShow(storedConsent === null);
     } catch (error) {
       console.error('Error accessing localStorage:', error);
       setShouldShow(true);
     }
   }, []);
-  
+
   const handleConsent = () => {
     try {
-      localStorage.setItem('cookieConsent', 'true');
-      setConsentState(true);
+      localStorage.setItem('analytics-consent', 'true');
       setShouldShow(false);
     } catch (error) {
+      console.error('Error saving consent:', error);
     }
   };
-  
+
   const handleDecline = () => {
     try {
-      localStorage.setItem('cookieConsent', 'false');
-      setConsentState(false);
+      localStorage.setItem('analytics-consent', 'false');
       setShouldShow(false);
     } catch (error) {
+      console.error('Error saving consent:', error);
     }
   };
-  
+
   if (!shouldShow) {
     return null;
   }
-  
-  console.log('Rendering banner');
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-black bg-opacity-90 border-t border-gray-800 shadow-lg">
       <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-8">
         <p className="text-gray-400 text-sm px-0">
-          I use cookies for very basic analytics which you can decline if you want to. By continuing to use this site, you agree to my use of cookies.
+          This website uses cookies for essential functionality and optional analytics. Analytics cookies are only set with your consent. You can accept or decline analytics cookies now and change your preferences at any time in the cookie settings. For more details, see our Privacy Policy.
         </p>
         <div className="flex gap-3">
           <button

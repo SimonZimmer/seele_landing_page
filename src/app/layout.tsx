@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/react';
-import { SpeedInsights } from '@vercel/speed-insights/next';
+import { ClientAnalytics } from '@/components/ClientAnalytics';
 import './globals.css';
 
 const geistSans = Geist({
@@ -21,8 +20,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-          url: "/images/favicon.ico",
-          href: "/images/favicon.ico",
+        url: '/images/favicon.ico',
+        href: '/images/favicon.ico',
       },
     ],
   },
@@ -39,8 +38,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
-        <Analytics />
-        <SpeedInsights />
+        <ClientAnalytics />
       </body>
     </html>
   );
