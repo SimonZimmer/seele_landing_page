@@ -8,6 +8,7 @@ import { WavyDivider } from '@/components/WavyDivider';
 import { Contact } from '@/components/Contact';
 import { TechnicalSpecs } from '@/components/TechnicalSpecs';
 import { DownloadButton } from '@/components/DownloadButton';
+import { BrevoSignup } from '@/components/BrevoSignup';
 
 export default function Home() {
   return (
@@ -35,12 +36,12 @@ export default function Home() {
 
           <div className="md:w-2/3">
             <Image
-              src="/images/seele-screenshot.gif"
+              src="/images/seele-screenshot.png"
               alt="SEELE VST Plugin Interface"
               width={1920}
               height={1024}
               className="rounded-lg"
-              unoptimized={true}
+              priority={true}
             />
           </div>
         </div>
@@ -50,19 +51,17 @@ export default function Home() {
 
         <FeaturesSection />
 
-        <section className="mt-24 space-y-16">
-          <div className="md:w-full ">
-            <Image
-              src="/images/seele-screenshot.png"
-              alt="SEELE VST Plugin Interface"
-              width={1920}
-              height={1024}
-              className="rounded-lg"
-            />
+        <section className="mt-24 space-y-16 flex justify-center">
+          <div className="md:w-2/3">
+            <video width="100%" height="auto" autoPlay loop muted playsInline>
+              <source src="/images/seele-screenshot.mp4" type="video/mp4" />
+            </video>
           </div>
         </section>
 
         <TechnicalSpecs />
+
+        <BrevoSignup />
 
         <Contact />
       </div>
