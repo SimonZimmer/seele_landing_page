@@ -14,23 +14,31 @@ export function ClientAnalytics() {
         setIsAnalyticsEnabled(consent === 'true');
       } catch (error) {
         console.error('Error reading analytics consent:', error);
+        setIsAnalyticsEnabled(false);
       }
     };
 
     updateConsentState();
 
-    window.addEventListener('storage', updateConsentState);
+    const consentChangeEvent = new Event('consentChange');
+    window.addEventListener('consentChange', updateConsentState);
+
+    window.addEventListener('storage', (e) => {
+      if (e.key === 'analytics-consent') {
+        updateConsentState();
+      }
+    });
 
     return () => {
+      window.removeEventListener('consentChange', updateConsentState);
       window.removeEventListener('storage', updateConsentState);
     };
   }, []);
 
   return (
     <>
-      {isAnalyticsEnabled && <Analytics />}
-      {isAnalyticsEnabled && <SpeedInsights />}
+      {isAnalyticsEnabled === true && <Analytics />}
+      {isAnalyticsEnabled === true && <SpeedInsights />}
     </>
   );
 }
-

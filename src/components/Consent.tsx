@@ -19,6 +19,8 @@ export function Consent() {
     try {
       localStorage.setItem('analytics-consent', 'true');
       setShouldShow(false);
+      window.dispatchEvent(new Event('consentChange'));
+      console.log('Analytics consent granted');
     } catch (error) {
       console.error('Error saving consent:', error);
     }
@@ -28,12 +30,14 @@ export function Consent() {
     try {
       localStorage.setItem('analytics-consent', 'false');
       setShouldShow(false);
+      window.dispatchEvent(new Event('consentChange'));
+      console.log('Analytics consent declined');
     } catch (error) {
       console.error('Error saving consent:', error);
     }
   };
 
-  if (!shouldShow) {
+  if (shouldShow === false) {
     return null;
   }
 

@@ -8,13 +8,11 @@ import { WavyDivider } from '@/components/WavyDivider';
 import { Contact } from '@/components/Contact';
 import { TechnicalSpecs } from '@/components/TechnicalSpecs';
 import { DownloadButton } from '@/components/DownloadButton';
-import { Consent } from '@/components/Consent';
 
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white p-8 md:p-16">
       <div className="max-w-7xl mx-auto">
-        <Consent />
         <div className="flex flex-col md:flex-row items-center justify-between gap-12">
           <div className="md:w-1/2 space-y-2">
             <div className="space-y-2">
